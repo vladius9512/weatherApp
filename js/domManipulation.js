@@ -1,6 +1,3 @@
-import { getWeather, startWeather } from "./api";
-import { cityTemp, cityRealFeel, cityWind, citySky, cityName } from "./script";
-
 const dateDiv = document.getElementById("date");
 const locationDiv = document.getElementById("location");
 const tempDiv = document.getElementById("temp");
@@ -14,7 +11,7 @@ function createElement(elemType, elemText) {
     return newElem;
 }
 
-async function placeData() {
+function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
     let locationName = createElement("p", cityName);
     let temp = createElement("p", cityTemp);
     let realFeel = createElement("p", "Real Feel is " + cityRealFeel);
@@ -40,9 +37,6 @@ async function placeData() {
     realFeelDiv.appendChild(realFeel);
     skyDiv.appendChild(sky);
     windDiv.appendChild(wind);
-    await firstEntry();
 }
 
-placeData();
-
-export { placeData };
+export default placeData;
