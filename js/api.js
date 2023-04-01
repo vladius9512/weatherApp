@@ -9,7 +9,8 @@ async function startWeather() {
     const currentFeelsLike = weatherData.main.feels_like;
     const currentWind = weatherData.wind.speed;
     const clouds = weatherData.clouds.all;
-    return [currentTemp, currentFeelsLike, currentWind, clouds];
+    const city = weatherData.name;
+    return [currentTemp, currentFeelsLike, currentWind, clouds, city];
 }
 
 async function getWeather() {
@@ -21,8 +22,8 @@ async function getWeather() {
     const currentFeelsLike = weatherData.main.feels_like;
     const currentWind = weatherData.wind.speed;
     const clouds = weatherData.clouds.all;
-    console.log(weatherData);
-    return [currentTemp, currentFeelsLike, currentWind, clouds];
+    const city = weatherData.name;
+    return [currentTemp, currentFeelsLike, currentWind, clouds, city];
 }
 
 async function startingLocation() {
@@ -43,4 +44,4 @@ async function getLocationFromSearch() {
 startingLocation();
 startWeather();
 
-export { getLocationFromSearch, getWeather };
+export { getLocationFromSearch, getWeather, startWeather };
