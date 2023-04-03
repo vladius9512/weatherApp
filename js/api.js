@@ -41,7 +41,27 @@ async function getLocationFromSearch() {
     return [locationData[0].lat, locationData[0].lon];
 }
 
+async function fiveDay() {
+    const response = await fetch(
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLon}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
+    );
+    const weatherData = await response.json();
+    const weatherList = weatherData.list;
+    const daysListOfTempsNight = [];
+    const daysListOfTempsDay = [];
+    weatherList.forEach((elem) => {
+        if (elem.dt_txt.endsWith("00:00:00")) {
+            daysListOfTempsNight.push(elem);
+        }
+        if (elem.dt_txt.endsWith("15:00:00")) {
+            daysListOfTempsDay.push(elem);
+        }
+    });
+    console.log(daysListOfTempsNight);
+    console.log(daysListOfTempsDay);
+}
+
 startingLocation();
 startWeather();
 
-export { getLocationFromSearch, getWeather, startWeather };
+export { getLocationFromSearch, getWeather, startWeather, fiveDay };

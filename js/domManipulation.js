@@ -28,8 +28,8 @@ function initializeWebsite(
             dateOb.getFullYear()
     );
     let locationName = createElement("p", cityName);
-    let temp = createElement("p", cityTemp);
-    let realFeel = createElement("p", "Real Feel is " + cityRealFeel);
+    let temp = createElement("p", cityTemp + "°C");
+    let realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
     let sky = createElement("p", citySky);
     if (citySky <= 20) {
         sky.innerText = "Sky looks bright";
@@ -49,8 +49,8 @@ function initializeWebsite(
 
 function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
     let locationName = createElement("p", cityName);
-    let temp = createElement("p", cityTemp);
-    let realFeel = createElement("p", "Real Feel is " + cityRealFeel);
+    let temp = createElement("p", cityTemp + "°C");
+    let realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
     let sky = createElement("p", citySky);
     let wind = createElement("p", cityWind);
     if (locationDiv.firstChild) {

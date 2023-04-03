@@ -1,4 +1,9 @@
-import { getLocationFromSearch, getWeather, startWeather } from "./api.js";
+import {
+    getLocationFromSearch,
+    getWeather,
+    startWeather,
+    fiveDay,
+} from "./api.js";
 import { placeData, initializeWebsite } from "./domManipulation.js";
 
 const searchInp = document.getElementById("search");
@@ -13,6 +18,7 @@ searchInp.addEventListener("keydown", async (e) => {
         cityLat = cityArray[0];
         cityLon = cityArray[1];
         let searchedCityArray = await getWeather();
+        fiveDay();
         placeData(
             searchedCityArray[4],
             searchedCityArray[0],
