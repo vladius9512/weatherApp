@@ -5,11 +5,40 @@ const realFeelDiv = document.getElementById("real-feel");
 const skyDiv = document.getElementById("sky");
 const windDiv = document.getElementById("wind");
 const minTempDiv = document.getElementById("min-temp");
+const forecastDiv = document.getElementById("forecast-container");
+
+function resetForecastDiv() {
+    forecastDiv.innerHTML = "";
+}
 
 function createElement(elemType, elemText) {
     const newElem = document.createElement(elemType);
-    newElem.innerText = elemText;
+    if (elemText) {
+        newElem.innerText = elemText;
+    }
     return newElem;
+}
+
+function createFiveDaysForecastElements(
+    dayTemp,
+    nightTemp,
+    weatherDescription,
+    icon
+) {
+    let dayDiv = createElement("div");
+    dayDiv.classList.add = "day-container";
+    let dayTempElem = createElement("p", dayTemp);
+    let nightTempElem = createElement("p", nightTemp);
+    let imgDescribingDay = createElement("img");
+    imgDescribingDay.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+    let dayWeatherDescription = createElement("p", weatherDescription);
+    dayDiv.append(
+        imgDescribingDay,
+        dayTempElem,
+        nightTempElem,
+        dayWeatherDescription
+    );
+    forecastDiv.appendChild(dayDiv);
 }
 
 function initializeWebsite(
@@ -78,7 +107,7 @@ function placeData(
         windDiv.removeChild(windDiv.firstChild);
     }
     if (minTempDiv.firstChild) {
-        minTemp.removeChild(minTempDiv.firstChild);
+        minTempDiv.removeChild(minTempDiv.firstChild);
     }
     if (citySky <= 20) {
         sky.innerText = "Sky looks bright";
@@ -95,4 +124,9 @@ function placeData(
     windDiv.appendChild(wind);
 }
 
-export { placeData, initializeWebsite };
+export {
+    placeData,
+    initializeWebsite,
+    createFiveDaysForecastElements,
+    resetForecastDiv,
+};

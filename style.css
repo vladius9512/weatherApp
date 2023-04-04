@@ -28,11 +28,11 @@ body {
 .weather-container {
     display: flex;
     flex-direction: column;
-    min-width: 360px;
+    min-width: 320px;
     max-width: 600px;
     background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
-    padding: 1rem;
+    padding-top: 1rem;
     gap: 1rem;
 }
 

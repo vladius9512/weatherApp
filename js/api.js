@@ -17,6 +17,41 @@ async function startWeather() {
     };
 }
 
+async function startWeatherForFiveDays() {
+    const responseForFiveDays = await fetch(
+        "http://api.openweathermap.org/data/2.5/forecast?lat=46.769379&lon=23.5899542&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric"
+    );
+    const weatherForFiveDaysData = await responseForFiveDays.json();
+    const weatherList = weatherForFiveDaysData.list;
+    const fiveDaysForecast = {};
+    weatherList.forEach((elem) => {
+        const date = elem.dt_txt.split(" ")[0];
+        if (elem.dt_txt.endsWith("00:00:00")) {
+            if (!fiveDaysForecast[date]) {
+                fiveDaysForecast[date] = { nightTemp: elem.main.temp };
+            } else {
+                fiveDaysForecast[date].nightTemp = elem.main.temp;
+            }
+        } else if (elem.dt_txt.endsWith("15:00:00")) {
+            if (!fiveDaysForecast[date]) {
+                fiveDaysForecast[date] = {
+                    dayTemp: elem.main.temp,
+                    dayDescription: elem.weather[0].description,
+                    icon: elem.weather[0].icon,
+                    date: date,
+                };
+            } else {
+                fiveDaysForecast[date].dayTemp = elem.main.temp;
+                fiveDaysForecast[date].dayDescription =
+                    elem.weather[0].description;
+                fiveDaysForecast[date].icon = elem.weather[0].icon;
+                fiveDaysForecast[date].date = date;
+            }
+        }
+    });
+    return Object.values(fiveDaysForecast);
+}
+
 async function getWeather(cityLatitude, cityLongitude) {
     const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
@@ -57,23 +92,44 @@ async function fiveDay(cityLatitude, cityLongitude) {
     const response = await fetch(
         `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
-    const weatherData = await response.json();
-    const weatherList = weatherData.list;
-    const daysListOfTempsNight = [];
-    const daysListOfTempsDay = [];
+    const weatherForFiveDaysData = await response.json();
+    const weatherList = weatherForFiveDaysData.list;
+    const fiveDaysForecast = {};
     weatherList.forEach((elem) => {
+        const date = elem.dt_txt.split(" ")[0];
         if (elem.dt_txt.endsWith("00:00:00")) {
-            daysListOfTempsNight.push(elem);
-        }
-        if (elem.dt_txt.endsWith("15:00:00")) {
-            daysListOfTempsDay.push(elem);
+            if (!fiveDaysForecast[date]) {
+                fiveDaysForecast[date] = { nightTemp: elem.main.temp };
+            } else {
+                fiveDaysForecast[date].nightTemp = elem.main.temp;
+            }
+        } else if (elem.dt_txt.endsWith("15:00:00")) {
+            if (!fiveDaysForecast[date]) {
+                fiveDaysForecast[date] = {
+                    dayTemp: elem.main.temp,
+                    dayDescription: elem.weather[0].description,
+                    icon: elem.weather[0].icon,
+                    date: date,
+                };
+            } else {
+                fiveDaysForecast[date].dayTemp = elem.main.temp;
+                fiveDaysForecast[date].dayDescription =
+                    elem.weather[0].description;
+                fiveDaysForecast[date].icon = elem.weather[0].icon;
+                fiveDaysForecast[date].date = date;
+            }
         }
     });
-    console.log(daysListOfTempsNight);
-    console.log(daysListOfTempsDay);
+    return Object.values(fiveDaysForecast);
 }
 
 startingLocation();
 startWeather();
 
-export { getLocationFromSearch, getWeather, startWeather, fiveDay };
+export {
+    getLocationFromSearch,
+    getWeather,
+    startWeather,
+    fiveDay,
+    startWeatherForFiveDays,
+};

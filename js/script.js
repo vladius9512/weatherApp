@@ -3,40 +3,64 @@ import {
     getWeather,
     startWeather,
     fiveDay,
+    startWeatherForFiveDays,
 } from "./api.js";
-import { placeData, initializeWebsite } from "./domManipulation.js";
+import {
+    placeData,
+    initializeWebsite,
+    createFiveDaysForecastElements,
+    resetForecastDiv,
+} from "./domManipulation.js";
 
 const searchInp = document.getElementById("search");
 
 searchInp.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
-        let searchCity = searchInp.value;
+        const searchCity = searchInp.value;
         searchInp.value = "";
-        let cityArray = await getLocationFromSearch(searchCity);
-        let cityLat = cityArray.latitude;
-        let cityLon = cityArray.longitude;
-        let searchedCityArray = await getWeather(cityLat, cityLon);
-        fiveDay(cityLat, cityLon);
+        const cityObj = await getLocationFromSearch(searchCity);
+        const cityLat = cityObj.latitude;
+        const cityLon = cityObj.longitude;
+        const searchedCityObj = await getWeather(cityLat, cityLon);
+        const fiveDaysForecast = await fiveDay(cityLat, cityLon);
         placeData(
-            searchedCityArray.cityName,
-            searchedCityArray.currentTemperature,
-            searchedCityArray.currentFeelsLikeTemperature,
-            searchedCityArray.clouds,
-            searchedCityArray.wind,
-            searchedCityArray.todaysMinimum
+            searchedCityObj.cityName,
+            searchedCityObj.currentTemperature,
+            searchedCityObj.currentFeelsLikeTemperature,
+            searchedCityObj.wind,
+            searchedCityObj.clouds,
+            searchedCityObj.todaysMinimum
         );
+        resetForecastDiv();
+        fiveDaysForecast.forEach((elem) => {
+            createFiveDaysForecastElements(
+                elem.dayTemp,
+                elem.nightTemp,
+                elem.dayDescription,
+                elem.icon
+            );
+        });
     }
 });
 
 async function firstEntryOnWebsite() {
-    let firstWeatherArray = await startWeather();
+    const firstWeatherObj = await startWeather();
+    const fiveDaysForecast = await startWeatherForFiveDays();
     initializeWebsite(
-        firstWeatherArray.cityName,
-        firstWeatherArray.currentTemperature,
-        firstWeatherArray.currentFeelsLikeTemperature,
-        firstWeatherArray.clouds,
-        firstWeatherArray.wind
+        firstWeatherObj.cityName,
+        firstWeatherObj.currentTemperature,
+        firstWeatherObj.currentFeelsLikeTemperature,
+        firstWeatherObj.wind,
+        firstWeatherObj.clouds
     );
+    fiveDaysForecast.forEach((elem) => {
+        createFiveDaysForecastElements(
+            elem.dayTemp,
+            elem.nightTemp,
+            elem.dayDescription,
+            elem.icon
+        );
+    });
 }
 
 firstEntryOnWebsite();
