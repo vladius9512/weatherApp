@@ -7,39 +7,36 @@ import {
 import { placeData, initializeWebsite } from "./domManipulation.js";
 
 const searchInp = document.getElementById("search");
-let searchCity = "";
-let cityLat, cityLon;
 
 searchInp.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
-        searchCity = searchInp.value;
+        let searchCity = searchInp.value;
         searchInp.value = "";
-        let cityArray = await getLocationFromSearch();
-        cityLat = cityArray[0];
-        cityLon = cityArray[1];
-        let searchedCityArray = await getWeather();
-        fiveDay();
+        let cityArray = await getLocationFromSearch(searchCity);
+        let cityLat = cityArray.latitude;
+        let cityLon = cityArray.longitude;
+        let searchedCityArray = await getWeather(cityLat, cityLon);
+        fiveDay(cityLat, cityLon);
         placeData(
-            searchedCityArray[4],
-            searchedCityArray[0],
-            searchedCityArray[1],
-            searchedCityArray[2],
-            searchedCityArray[3]
+            searchedCityArray.cityName,
+            searchedCityArray.currentTemperature,
+            searchedCityArray.currentFeelsLikeTemperature,
+            searchedCityArray.clouds,
+            searchedCityArray.wind,
+            searchedCityArray.todaysMinimum
         );
     }
 });
 
-async function firstEntry() {
+async function firstEntryOnWebsite() {
     let firstWeatherArray = await startWeather();
     initializeWebsite(
-        firstWeatherArray[4],
-        firstWeatherArray[0],
-        firstWeatherArray[1],
-        firstWeatherArray[2],
-        firstWeatherArray[3]
+        firstWeatherArray.cityName,
+        firstWeatherArray.currentTemperature,
+        firstWeatherArray.currentFeelsLikeTemperature,
+        firstWeatherArray.clouds,
+        firstWeatherArray.wind
     );
 }
 
-firstEntry();
-
-export { searchCity, cityLat, cityLon };
+firstEntryOnWebsite();

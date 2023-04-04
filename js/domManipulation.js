@@ -4,6 +4,7 @@ const tempDiv = document.getElementById("temp");
 const realFeelDiv = document.getElementById("real-feel");
 const skyDiv = document.getElementById("sky");
 const windDiv = document.getElementById("wind");
+const minTempDiv = document.getElementById("min-temp");
 
 function createElement(elemType, elemText) {
     const newElem = document.createElement(elemType);
@@ -47,12 +48,20 @@ function initializeWebsite(
     windDiv.appendChild(wind);
 }
 
-function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
+function placeData(
+    cityName,
+    cityTemp,
+    cityRealFeel,
+    cityWind,
+    citySky,
+    minTempOfDay
+) {
     let locationName = createElement("p", cityName);
     let temp = createElement("p", cityTemp + "°C");
     let realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
     let sky = createElement("p", citySky);
     let wind = createElement("p", cityWind);
+    let minTemp = createElement("p", minTempOfDay + "°C");
     if (locationDiv.firstChild) {
         locationDiv.removeChild(locationDiv.firstChild);
     }
@@ -68,6 +77,9 @@ function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
     if (windDiv.firstChild) {
         windDiv.removeChild(windDiv.firstChild);
     }
+    if (minTempDiv.firstChild) {
+        minTemp.removeChild(minTempDiv.firstChild);
+    }
     if (citySky <= 20) {
         sky.innerText = "Sky looks bright";
     } else if (citySky <= 60) {
@@ -78,6 +90,7 @@ function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
     locationDiv.appendChild(locationName);
     tempDiv.appendChild(temp);
     realFeelDiv.appendChild(realFeel);
+    minTempDiv.appendChild(minTemp);
     skyDiv.appendChild(sky);
     windDiv.appendChild(wind);
 }
