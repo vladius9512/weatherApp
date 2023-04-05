@@ -1,3 +1,5 @@
+import { favoriteCityClickHandler } from "./script.js";
+
 const dateDiv = document.getElementById("date");
 const locationDiv = document.getElementById("location");
 const tempDiv = document.getElementById("temp");
@@ -6,6 +8,7 @@ const skyDiv = document.getElementById("sky");
 const windDiv = document.getElementById("wind");
 const minTempDiv = document.getElementById("min-temp");
 const forecastDiv = document.getElementById("forecast-container");
+const favoritesContainerDiv = document.getElementById("favorites");
 
 function resetForecastDiv() {
     forecastDiv.innerHTML = "";
@@ -17,6 +20,19 @@ function createElement(elemType, elemText) {
         newElem.innerText = elemText;
     }
     return newElem;
+}
+
+function createFavoriteElement(cityName, cityLat, cityLon) {
+    const buttonDiv = createElement("div");
+    buttonDiv.className = "button-container";
+    const favButton = createElement("button");
+    favButton.innerText = cityName;
+    buttonDiv.appendChild(favButton);
+    favButton.id = cityName;
+    favoritesContainerDiv.appendChild(buttonDiv);
+    favButton.addEventListener("click", () => {
+        favoriteCityClickHandler(cityLat, cityLon);
+    });
 }
 
 function createFiveDaysForecastElements(
@@ -135,4 +151,5 @@ export {
     initializeWebsite,
     createFiveDaysForecastElements,
     resetForecastDiv,
+    createFavoriteElement,
 };
