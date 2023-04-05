@@ -12,7 +12,17 @@ import {
     resetForecastDiv,
 } from "./domManipulation.js";
 
+const daysOfWeekArr = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+];
 const searchInp = document.getElementById("search");
+const favoriteBtn = document.getElementById("favorite");
 
 searchInp.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
@@ -32,15 +42,32 @@ searchInp.addEventListener("keydown", async (e) => {
             searchedCityObj.todaysMinimum
         );
         resetForecastDiv();
+        if (!("nightTemp" in fiveDaysForecast[0])) {
+            fiveDaysForecast[0]["nightTemp"] =
+                fiveDaysForecast[fiveDaysForecast.length - 1].nightTemp;
+            fiveDaysForecast.pop();
+        }
+        const currentDate = new Date();
+        let dayValue = currentDate.getDay();
         fiveDaysForecast.forEach((elem) => {
+            if (dayValue > 6) {
+                dayValue = 0;
+            }
+            const dayOfWeek = daysOfWeekArr[dayValue];
+            dayValue++;
             createFiveDaysForecastElements(
                 elem.dayTemp,
                 elem.nightTemp,
                 elem.dayDescription,
-                elem.icon
+                elem.icon,
+                dayOfWeek
             );
         });
     }
+});
+
+favoriteBtn.addEventListener("click", (e) => {
+    console.log(e);
 });
 
 async function firstEntryOnWebsite() {
@@ -53,12 +80,25 @@ async function firstEntryOnWebsite() {
         firstWeatherObj.wind,
         firstWeatherObj.clouds
     );
+    if (!("nightTemp" in fiveDaysForecast[0])) {
+        fiveDaysForecast[0]["nightTemp"] =
+            fiveDaysForecast[fiveDaysForecast.length - 1].nightTemp;
+        fiveDaysForecast.pop();
+    }
+    const currentDate = new Date();
+    let dayValue = currentDate.getDay();
     fiveDaysForecast.forEach((elem) => {
+        if (dayValue > 6) {
+            dayValue = 0;
+        }
+        const dayOfWeek = daysOfWeekArr[dayValue];
+        dayValue++;
         createFiveDaysForecastElements(
             elem.dayTemp,
             elem.nightTemp,
             elem.dayDescription,
-            elem.icon
+            elem.icon,
+            dayOfWeek
         );
     });
 }

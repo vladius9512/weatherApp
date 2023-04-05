@@ -23,21 +23,27 @@ function createFiveDaysForecastElements(
     dayTemp,
     nightTemp,
     weatherDescription,
-    icon
+    icon,
+    weekday
 ) {
-    let dayDiv = createElement("div");
-    dayDiv.classList.add = "day-container";
-    let dayTempElem = createElement("p", dayTemp);
-    let nightTempElem = createElement("p", nightTemp);
-    let imgDescribingDay = createElement("img");
+    const dayDiv = createElement("div");
+    dayDiv.className = "day-container";
+    const dayOfWeekDiv = createElement("div");
+    dayOfWeekDiv.className = "weekday";
+    const tempsDiv = createElement("div");
+    tempsDiv.className = "forecastDayTemp";
+    const dayDescriptionDiv = createElement("div");
+    dayDescriptionDiv.className = "forecastDayDescription";
+    const dayTempElem = createElement("p", dayTemp + "°C");
+    const nightTempElem = createElement("p", nightTemp + "°C");
+    const imgDescribingDay = createElement("img");
     imgDescribingDay.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-    let dayWeatherDescription = createElement("p", weatherDescription);
-    dayDiv.append(
-        imgDescribingDay,
-        dayTempElem,
-        nightTempElem,
-        dayWeatherDescription
-    );
+    const dayWeatherDescription = createElement("p", weatherDescription);
+    const weekdayElem = createElement("p", weekday);
+    dayOfWeekDiv.appendChild(weekdayElem);
+    tempsDiv.append(dayTempElem, nightTempElem);
+    dayDescriptionDiv.append(imgDescribingDay, dayWeatherDescription);
+    dayDiv.append(dayOfWeekDiv, tempsDiv, dayDescriptionDiv);
     forecastDiv.appendChild(dayDiv);
 }
 
@@ -48,8 +54,8 @@ function initializeWebsite(
     cityWind,
     citySky
 ) {
-    let dateOb = new Date();
-    let date = createElement(
+    const dateOb = new Date();
+    const date = createElement(
         "p",
         dateOb.getDate() +
             "/" +
@@ -57,10 +63,10 @@ function initializeWebsite(
             "/" +
             dateOb.getFullYear()
     );
-    let locationName = createElement("p", cityName);
-    let temp = createElement("p", cityTemp + "°C");
-    let realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
-    let sky = createElement("p", citySky);
+    const locationName = createElement("p", cityName);
+    const temp = createElement("p", cityTemp + "°C");
+    const realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
+    const sky = createElement("p", citySky);
     if (citySky <= 20) {
         sky.innerText = "Sky looks bright";
     } else if (citySky <= 60) {
@@ -68,7 +74,7 @@ function initializeWebsite(
     } else {
         sky.innerText = "Cloudy day";
     }
-    let wind = createElement("p", cityWind);
+    const wind = createElement("p", cityWind);
     dateDiv.appendChild(date);
     locationDiv.appendChild(locationName);
     tempDiv.appendChild(temp);
@@ -85,12 +91,12 @@ function placeData(
     citySky,
     minTempOfDay
 ) {
-    let locationName = createElement("p", cityName);
-    let temp = createElement("p", cityTemp + "°C");
-    let realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
-    let sky = createElement("p", citySky);
-    let wind = createElement("p", cityWind);
-    let minTemp = createElement("p", minTempOfDay + "°C");
+    const locationName = createElement("p", cityName);
+    const temp = createElement("p", cityTemp + "°C");
+    const realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
+    const sky = createElement("p", citySky);
+    const wind = createElement("p", cityWind);
+    const minTemp = createElement("p", minTempOfDay + "°C");
     if (locationDiv.firstChild) {
         locationDiv.removeChild(locationDiv.firstChild);
     }

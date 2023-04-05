@@ -10,30 +10,13 @@ html {
 }
 
 body {
-    background-image: url(/images/marc-olivier-jodoin-MJv31qXqSOU-unsplash.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: #202124;
     min-height: -webkit-fill-available;
 }
 
 .container {
-    display: flex;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    justify-content: flex-end;
-}
-
-.weather-container {
-    display: flex;
-    flex-direction: column;
-    min-width: 320px;
-    max-width: 600px;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    padding-top: 1rem;
-    gap: 1rem;
 }
 
 .search {
@@ -50,13 +33,19 @@ body {
     font-size: 0.7rem;
 }
 
-.date-location-container {
+.wind {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .temp {
     font-size: 2rem;
-    content: "\2103";
+}
+
+@media screen and (max-width: 800px) {
+    .topSide-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
 }
