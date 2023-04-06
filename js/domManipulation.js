@@ -66,10 +66,21 @@ function createFiveDaysForecastElements(
     imgDescribingDay.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     const dayWeatherDescription = createElement("p", weatherDescription);
     const weekdayElem = createElement("p", weekday);
-    dayOfWeekDiv.appendChild(weekdayElem);
-    tempsDiv.append(dayTempElem, nightTempElem);
-    dayDescriptionDiv.append(imgDescribingDay, dayWeatherDescription);
-    dayDiv.append(dayOfWeekDiv, tempsDiv, dayDescriptionDiv);
+    weekdayElem.className = "dayOfWeek";
+    const dayTempDiv = createElement("div");
+    dayTempDiv.className = "sun-temp-container";
+    const nightTempDiv = createElement("div");
+    nightTempDiv.className = "moon-temp-container";
+    const sunImgElem = createElement("img");
+    sunImgElem.src = "./images/sun.svg";
+    const moonImgElem = createElement("img");
+    moonImgElem.src = "./images/moon.svg";
+    dayTempDiv.append(sunImgElem, dayTempElem);
+    nightTempDiv.append(moonImgElem, nightTempElem);
+    dayOfWeekDiv.append(weekdayElem, dayWeatherDescription);
+    tempsDiv.append(dayTempDiv, nightTempDiv);
+    dayDescriptionDiv.append(imgDescribingDay);
+    dayDiv.append(dayOfWeekDiv, dayDescriptionDiv, tempsDiv);
     forecastDiv.appendChild(dayDiv);
 }
 

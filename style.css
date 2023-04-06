@@ -141,7 +141,28 @@ body {
         font-size: 0.8rem;
     }
     .fiveDay-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .day-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+    }
+    .weekday {
+        width: 100px;
+    }
+    .sun-temp-container {
+        display: flex;
+        align-items: center;
+    }
+    .moon-temp-container {
+        display: flex;
+        align-items: center;
+    }
+    .dayOfWeek {
+        font-weight: bold;
     }
 }
