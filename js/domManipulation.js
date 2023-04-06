@@ -27,9 +27,9 @@ function createFavoriteElement(cityName, cityLat, cityLon) {
     buttonDiv.className = "button-container";
     buttonDiv.id = cityName;
     const favButton = createElement("button");
+    favButton.className = "location-button";
     const removeButton = createElement("button");
     removeButton.className = "removeBtn";
-    removeButton.innerText = "R";
     favButton.innerText = cityName;
     buttonDiv.append(favButton, removeButton);
     favButton.id = cityName;
@@ -100,7 +100,7 @@ function initializeWebsite(
     } else {
         sky.innerText = "Cloudy day";
     }
-    const wind = createElement("p", cityWind);
+    const wind = createElement("p", cityWind + " m/s");
     dateDiv.appendChild(date);
     locationDiv.appendChild(locationName);
     tempDiv.appendChild(temp);
@@ -121,7 +121,7 @@ function placeData(
     const temp = createElement("p", cityTemp + "°C");
     const realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
     const sky = createElement("p", citySky);
-    const wind = createElement("p", cityWind);
+    const wind = createElement("p", cityWind + "m/s");
     const minTemp = createElement("p", minTempOfDay + "°C");
     if (locationDiv.firstChild) {
         locationDiv.removeChild(locationDiv.firstChild);
@@ -147,6 +147,9 @@ function placeData(
         sky.innerText = "Little bit cloudy";
     } else {
         sky.innerText = "Cloudy day";
+    }
+    if (windDiv.firstChild) {
+        windDiv.removeChild(windDiv.firstChild);
     }
     locationDiv.appendChild(locationName);
     tempDiv.appendChild(temp);

@@ -75,6 +75,12 @@ searchInp.addEventListener("keydown", async (e) => {
 });
 
 favoriteBtn.addEventListener("click", () => {
+    if (
+        favoritesList.find((elem) => elem.name === currentCityName) !==
+        undefined
+    ) {
+        return;
+    }
     favoritesList.push({
         name: currentCityName,
         latitude: currentCityLat,
