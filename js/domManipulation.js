@@ -1,4 +1,4 @@
-import { favoriteCityClickHandler } from "./script.js";
+import { favoriteCityClickHandler, removeFavoriteCity } from "./script.js";
 
 const dateDiv = document.getElementById("date");
 const locationDiv = document.getElementById("location");
@@ -25,13 +25,23 @@ function createElement(elemType, elemText) {
 function createFavoriteElement(cityName, cityLat, cityLon) {
     const buttonDiv = createElement("div");
     buttonDiv.className = "button-container";
+    buttonDiv.id = cityName;
     const favButton = createElement("button");
+    const removeButton = createElement("button");
+    removeButton.className = "removeBtn";
+    removeButton.innerText = "R";
     favButton.innerText = cityName;
-    buttonDiv.appendChild(favButton);
+    buttonDiv.append(favButton, removeButton);
     favButton.id = cityName;
     favoritesContainerDiv.appendChild(buttonDiv);
     favButton.addEventListener("click", () => {
         favoriteCityClickHandler(cityLat, cityLon);
+    });
+    removeButton.addEventListener("click", () => {
+        favoritesContainerDiv.removeChild(
+            favoritesContainerDiv.children[cityName]
+        );
+        removeFavoriteCity(cityName);
     });
 }
 

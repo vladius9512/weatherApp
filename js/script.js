@@ -22,7 +22,7 @@ const daysOfWeekArr = [
     "Friday",
     "Saturday",
 ];
-const favoritesList = [];
+let favoritesList = [];
 let currentCityName = "cluj";
 let currentCityLat = 46.769379;
 let currentCityLon = 23.5899542;
@@ -118,6 +118,11 @@ async function favoriteCityClickHandler(cityLat, cityLon) {
     });
 }
 
+function removeFavoriteCity(cityName) {
+    favoritesList = favoritesList.filter((elem) => elem.name !== cityName);
+    console.log(favoritesList);
+}
+
 async function firstEntryOnWebsite() {
     const firstWeatherObj = await startWeather();
     const fiveDaysForecast = await startWeatherForFiveDays();
@@ -153,4 +158,4 @@ async function firstEntryOnWebsite() {
 
 firstEntryOnWebsite();
 
-export { favoriteCityClickHandler };
+export { favoriteCityClickHandler, removeFavoriteCity };
