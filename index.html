@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./styles/style.css" />
+        <title>Weather</title>
+    </head>
+    <body>
+        <div class="container" id="container">
+            <div class="topSide-container">
+                <div class="leftSide-container">
+                    <div class="date-search-location-container">
+                        <div class="date-img-container">
+                            <div class="date" id="date"></div>
+                        </div>
+                        <input
+                            type="text"
+                            id="search"
+                            class="search"
+                            placeholder="Search..."
+                        />
+                        <label for="theme">Theme:</label>
+                        <select name="theme" id="theme">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                        <div class="location" id="location"></div>
+                    </div>
+                    <div class="favorites-container" id="favorites">
+                        <div class="button-container">
+                            <button id="favorite">Save Location</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightSide-container">
+                    <div class="currentDay-container">
+                        <div class="message">
+                            <p>The weather right now</p>
+                        </div>
+                        <div class="temp" id="temp"></div>
+                        <div class="real-feel" id="real-feel"></div>
+                        <div class="min-temp" id="min-temp"></div>
+                        <div class="sky" id="sky"></div>
+                        <div class="wind-container">
+                            <img src="./images/wind1.svg" alt="wind" />
+                            <div class="wind" id="wind"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fiveDay-container" id="forecast-container"></div>
+        </div>
+        <div class="links">
+            <p>
+                Find the background light image
+                <a
+                    href="https://www.freepik.com/free-vector/gradient-mountain-landscape_20008474.htm#page=3&query=illustrator%20background&position=49&from_view=keyword&track=ais"
+                    target="_blank"
+                    >here</a
+                >
+                and dark one
+                <a
+                    href="https://www.freepik.com/free-vector/hand-drawn-flat-winter-solstice-background_20290294.htm#page=7&query=illustrator%20background&position=40&from_view=keyword&track=ais"
+                    target="_blank"
+                    >here</a
+                >
+            </p>
+        </div>
+        <div class="footer">
+            <p>Made by vladius9512</p>
+            <a href="https://github.com/vladius9512" target="_blank">
+                <img src="./images/github.svg" />
+            </a>
+        </div>
+    </body>
+    <script src="./main.js" type="module"></script>
+</html>
