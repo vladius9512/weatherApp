@@ -9,6 +9,18 @@ const windDiv = document.getElementById("wind");
 const minTempDiv = document.getElementById("min-temp");
 const forecastDiv = document.getElementById("forecast-container");
 const favoritesContainerDiv = document.getElementById("favorites");
+const themeSelect = document.getElementById("theme");
+const bodyElem = document.body;
+const containerDiv = document.getElementById("container");
+
+themeSelect.addEventListener("change", () => {
+    bodyElem.style.backgroundImage = `url("./images/${themeSelect.value}.jpg")`;
+    if (themeSelect.value === "dark") {
+        containerDiv.style.backgroundColor = "unset";
+    } else if (window.innerWidth > 830) {
+        containerDiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+    }
+});
 
 function resetForecastDiv() {
     forecastDiv.innerHTML = "";
@@ -72,8 +84,10 @@ function createFiveDaysForecastElements(
     const nightTempDiv = createElement("div");
     nightTempDiv.className = "moon-temp-container";
     const sunImgElem = createElement("img");
+    sunImgElem.className = "sunFill";
     sunImgElem.src = "./images/sun.svg";
     const moonImgElem = createElement("img");
+    moonImgElem.className = "moonFill";
     moonImgElem.src = "./images/moon.svg";
     dayTempDiv.append(sunImgElem, dayTempElem);
     nightTempDiv.append(moonImgElem, nightTempElem);

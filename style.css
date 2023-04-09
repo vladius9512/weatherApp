@@ -11,13 +11,15 @@ html {
 
 body {
     background-color: #202124;
-    min-height: -webkit-fill-available;
+    background-image: url("/images/light.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    color: #fff;
 }
 
 .container {
-    min-height: 100vh;
     min-height: -webkit-fill-available;
-    color: #fff;
 }
 
 .search {
@@ -167,6 +169,29 @@ body {
     font-weight: bold;
 }
 
+.footer {
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    background-color: #202124;
+    color: #ffffff;
+    box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.9);
+}
+
+.footer img {
+    margin-left: 5px;
+}
+
+.footer img:hover {
+    height: 30px;
+    width: 30px;
+}
+
 @media screen and (min-width: 570px) {
     .topSide-container {
         max-width: 800px;
@@ -178,6 +203,9 @@ body {
     }
     .date-img-container {
         font-size: 1rem;
+    }
+    #theme {
+        width: 70%;
     }
     #favorite {
         width: 70%;
@@ -218,12 +246,28 @@ body {
     }
 }
 
+@media screen and (min-width: 570px) and (min-height: 465px) {
+    .container {
+        position: relative;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
 @media screen and (min-width: 830px) {
     .leftSide-container {
         padding: 1rem 0;
     }
     .rightSide-container {
         padding: 1rem 0;
+    }
+    .container {
+        margin: 0 auto;
+        max-width: 1000px;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 1rem;
     }
 }
 

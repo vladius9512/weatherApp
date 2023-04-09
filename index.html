@@ -8,18 +8,12 @@
         <title>Weather</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="container">
             <div class="topSide-container">
                 <div class="leftSide-container">
                     <div class="date-search-location-container">
                         <div class="date-img-container">
                             <div class="date" id="date"></div>
-                            <div class="img">
-                                <img
-                                    src="./images/calendar.svg"
-                                    alt="calendar"
-                                />
-                            </div>
                         </div>
                         <input
                             type="text"
@@ -27,6 +21,11 @@
                             class="search"
                             placeholder="Search..."
                         />
+                        <label for="theme">Theme:</label>
+                        <select name="theme" id="theme">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
                         <div class="location" id="location"></div>
                     </div>
                     <div class="favorites-container" id="favorites">
@@ -37,6 +36,9 @@
                 </div>
                 <div class="rightSide-container">
                     <div class="currentDay-container">
+                        <div class="message">
+                            <p>The weather right now</p>
+                        </div>
                         <div class="temp" id="temp"></div>
                         <div class="real-feel" id="real-feel"></div>
                         <div class="min-temp" id="min-temp"></div>
@@ -49,6 +51,12 @@
                 </div>
             </div>
             <div class="fiveDay-container" id="forecast-container"></div>
+        </div>
+        <div class="footer">
+            <p>Made by vladius9512</p>
+            <a href="https://github.com/vladius9512" target="_blank">
+                <img src="./images/github.svg" />
+            </a>
         </div>
     </body>
     <script src="/js/script.js" type="module"></script>
