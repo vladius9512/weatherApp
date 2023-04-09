@@ -14,7 +14,7 @@ const bodyElem = document.body;
 const containerDiv = document.getElementById("container");
 
 themeSelect.addEventListener("change", () => {
-    bodyElem.style.backgroundImage = `url("../images/${themeSelect.value}.jpg")`;
+    bodyElem.style.backgroundImage = `url("https://raw.githubusercontent.com/vladius9512/weatherApp/gh-pages/images/${themeSelect.value}.jpg")`;
     if (themeSelect.value === "dark") {
         containerDiv.style.backgroundColor = "unset";
     } else if (window.innerWidth > 830) {
