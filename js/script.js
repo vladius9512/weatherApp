@@ -24,10 +24,27 @@ const daysOfWeekArr = [
 ];
 let favoritesList = [];
 let currentCityName = "cluj";
-let currentCityLat = 46.769379;
-let currentCityLon = 23.5899542;
+let currentCityLat = 26.769379;
+let currentCityLon = 43.5899542;
 const searchInp = document.getElementById("search");
 const favoriteBtn = document.getElementById("favorite");
+
+function getUserCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                currentCityLat = position.coords.latitude;
+                currentCityLon = position.coords.longitude;
+                firstEntryOnWebsite();
+            },
+            () => {
+                firstEntryOnWebsite();
+            }
+        );
+    } else {
+        firstEntryOnWebsite();
+    }
+}
 
 searchInp.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
@@ -130,8 +147,11 @@ function removeFavoriteCity(cityName) {
 }
 
 async function firstEntryOnWebsite() {
-    const firstWeatherObj = await startWeather();
-    const fiveDaysForecast = await startWeatherForFiveDays();
+    const firstWeatherObj = await startWeather(currentCityLat, currentCityLon);
+    const fiveDaysForecast = await startWeatherForFiveDays(
+        currentCityLat,
+        currentCityLon
+    );
     initializeWebsite(
         firstWeatherObj.cityName,
         firstWeatherObj.currentTemperature,
@@ -162,6 +182,6 @@ async function firstEntryOnWebsite() {
     });
 }
 
-firstEntryOnWebsite();
+getUserCurrentLocation();
 
 export { favoriteCityClickHandler, removeFavoriteCity };

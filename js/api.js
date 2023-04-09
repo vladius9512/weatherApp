@@ -1,6 +1,6 @@
-async function startWeather() {
+async function startWeather(cityLatitude, cityLongitude) {
     const response = await fetch(
-        "https://api.openweathermap.org/data/2.5/weather?lat=46.769379&lon=23.5899542&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric"
+        `https://api.openweathermap.org/data/2.5/weather?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherData = await response.json();
     const currentTemp = weatherData.main.temp;
@@ -17,9 +17,9 @@ async function startWeather() {
     };
 }
 
-async function startWeatherForFiveDays() {
+async function startWeatherForFiveDays(cityLatitude, cityLongitude) {
     const responseForFiveDays = await fetch(
-        "http://api.openweathermap.org/data/2.5/forecast?lat=46.769379&lon=23.5899542&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric"
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherForFiveDaysData = await responseForFiveDays.json();
     const weatherList = weatherForFiveDaysData.list;
@@ -122,9 +122,6 @@ async function fiveDay(cityLatitude, cityLongitude) {
     });
     return Object.values(fiveDaysForecast);
 }
-
-startingLocation();
-startWeather();
 
 export {
     getLocationFromSearch,

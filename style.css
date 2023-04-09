@@ -9,9 +9,19 @@ html {
     min-height: -webkit-fill-available;
 }
 
+a {
+    text-decoration: none;
+    color: #1acb98;
+    transition: all 0.1s ease-in-out;
+}
+
+.links {
+    text-align: center;
+}
+
 body {
     background-color: #202124;
-    background-image: url("/images/light.jpg");
+    background-image: url("/images/dark.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
@@ -246,13 +256,18 @@ body {
     }
 }
 
-@media screen and (min-width: 570px) and (min-height: 465px) {
+@media screen and (min-width: 570px) and (min-height: 495px) {
     .container {
         position: relative;
     }
     .footer {
         position: absolute;
         bottom: 0;
+    }
+    .links {
+        position: absolute;
+        bottom: 45px;
+        width: 100%;
     }
 }
 
@@ -266,7 +281,7 @@ body {
     .container {
         margin: 0 auto;
         max-width: 1000px;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: unset;
         padding: 1rem;
     }
 }
