@@ -143,7 +143,6 @@ async function favoriteCityClickHandler(cityLat, cityLon) {
 
 function removeFavoriteCity(cityName) {
     favoritesList = favoritesList.filter((elem) => elem.name !== cityName);
-    console.log(favoritesList);
 }
 
 async function firstEntryOnWebsite() {
