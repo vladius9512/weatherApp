@@ -19,7 +19,7 @@ async function startWeather(cityLatitude, cityLongitude) {
 
 async function startWeatherForFiveDays(cityLatitude, cityLongitude) {
     const responseForFiveDays = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherForFiveDaysData = await responseForFiveDays.json();
     const weatherList = weatherForFiveDaysData.list;
@@ -75,14 +75,14 @@ async function getWeather(cityLatitude, cityLongitude) {
 
 async function startingLocation() {
     const response = await fetch(
-        "http://api.openweathermap.org/geo/1.0/direct?q=Cluj&limit=5&appid=5b81f0d11c6be7a51dcf784becbd0145"
+        "https://api.openweathermap.org/geo/1.0/direct?q=Cluj&limit=5&appid=5b81f0d11c6be7a51dcf784becbd0145"
     );
     const locationData = await response.json();
 }
 
 async function getLocationFromSearch(searchCity) {
     const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=5&appid=5b81f0d11c6be7a51dcf784becbd0145`
+        `https://api.openweathermap.org/geo/1.0/direct?q=${searchCity}&limit=5&appid=5b81f0d11c6be7a51dcf784becbd0145`
     );
     const locationData = await response.json();
     return { latitude: locationData[0].lat, longitude: locationData[0].lon };
@@ -90,7 +90,7 @@ async function getLocationFromSearch(searchCity) {
 
 async function fiveDay(cityLatitude, cityLongitude) {
     const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherForFiveDaysData = await response.json();
     const weatherList = weatherForFiveDaysData.list;
