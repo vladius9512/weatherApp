@@ -23,7 +23,7 @@ const daysOfWeekArr = [
     "Saturday",
 ];
 let favoritesList = [];
-let currentCityName = "cluj";
+let currentCityName = "Al-Qassim";
 let currentCityLat = 26.769379;
 let currentCityLon = 43.5899542;
 const searchInp = document.getElementById("search");
@@ -63,8 +63,7 @@ searchInp.addEventListener("keydown", async (e) => {
             searchedCityObj.currentTemperature,
             searchedCityObj.currentFeelsLikeTemperature,
             searchedCityObj.wind,
-            searchedCityObj.clouds,
-            searchedCityObj.todaysMinimum
+            searchedCityObj.clouds
         );
         resetForecastDiv();
         if (!("nightTemp" in fiveDaysForecast[0])) {
@@ -114,8 +113,7 @@ async function favoriteCityClickHandler(cityLat, cityLon) {
         searchedCityObj.currentTemperature,
         searchedCityObj.currentFeelsLikeTemperature,
         searchedCityObj.wind,
-        searchedCityObj.clouds,
-        searchedCityObj.todaysMinimum
+        searchedCityObj.clouds
     );
     resetForecastDiv();
     if (!("nightTemp" in fiveDaysForecast[0])) {
@@ -147,6 +145,7 @@ function removeFavoriteCity(cityName) {
 
 async function firstEntryOnWebsite() {
     const firstWeatherObj = await startWeather(currentCityLat, currentCityLon);
+    currentCityName = firstWeatherObj.cityName;
     const fiveDaysForecast = await startWeatherForFiveDays(
         currentCityLat,
         currentCityLon

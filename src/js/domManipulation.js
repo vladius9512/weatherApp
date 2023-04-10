@@ -6,7 +6,6 @@ const tempDiv = document.getElementById("temp");
 const realFeelDiv = document.getElementById("real-feel");
 const skyDiv = document.getElementById("sky");
 const windDiv = document.getElementById("wind");
-const minTempDiv = document.getElementById("min-temp");
 const forecastDiv = document.getElementById("forecast-container");
 const favoritesContainerDiv = document.getElementById("favorites");
 const themeSelect = document.getElementById("theme");
@@ -134,20 +133,12 @@ function initializeWebsite(
     windDiv.appendChild(wind);
 }
 
-function placeData(
-    cityName,
-    cityTemp,
-    cityRealFeel,
-    cityWind,
-    citySky,
-    minTempOfDay
-) {
+function placeData(cityName, cityTemp, cityRealFeel, cityWind, citySky) {
     const locationName = createElement("p", cityName);
     const temp = createElement("p", cityTemp + "°C");
     const realFeel = createElement("p", "Real Feel is " + cityRealFeel + "°C");
     const sky = createElement("p", citySky);
     const wind = createElement("p", cityWind + "m/s");
-    const minTemp = createElement("p", minTempOfDay + "°C");
     if (locationDiv.firstChild) {
         locationDiv.removeChild(locationDiv.firstChild);
     }
@@ -163,9 +154,6 @@ function placeData(
     if (windDiv.firstChild) {
         windDiv.removeChild(windDiv.firstChild);
     }
-    if (minTempDiv.firstChild) {
-        minTempDiv.removeChild(minTempDiv.firstChild);
-    }
     if (citySky <= 20) {
         sky.innerText = "Sky looks bright";
     } else if (citySky <= 60) {
@@ -179,7 +167,6 @@ function placeData(
     locationDiv.appendChild(locationName);
     tempDiv.appendChild(temp);
     realFeelDiv.appendChild(realFeel);
-    minTempDiv.appendChild(minTemp);
     skyDiv.appendChild(sky);
     windDiv.appendChild(wind);
 }

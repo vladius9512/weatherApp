@@ -3,8 +3,8 @@ async function startWeather(cityLatitude, cityLongitude) {
         `https://api.openweathermap.org/data/2.5/weather?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherData = await response.json();
-    const currentTemp = weatherData.main.temp;
-    const currentFeelsLike = weatherData.main.feels_like;
+    const currentTemp = parseInt(weatherData.main.temp);
+    const currentFeelsLike = parseInt(weatherData.main.feels_like);
     const currentWind = weatherData.wind.speed;
     const clouds = weatherData.clouds.all;
     const city = weatherData.name;
@@ -28,20 +28,22 @@ async function startWeatherForFiveDays(cityLatitude, cityLongitude) {
         const date = elem.dt_txt.split(" ")[0];
         if (elem.dt_txt.endsWith("00:00:00")) {
             if (!fiveDaysForecast[date]) {
-                fiveDaysForecast[date] = { nightTemp: elem.main.temp };
+                fiveDaysForecast[date] = {
+                    nightTemp: parseInt(elem.main.temp),
+                };
             } else {
-                fiveDaysForecast[date].nightTemp = elem.main.temp;
+                fiveDaysForecast[date].nightTemp = parseInt(elem.main.temp);
             }
         } else if (elem.dt_txt.endsWith("15:00:00")) {
             if (!fiveDaysForecast[date]) {
                 fiveDaysForecast[date] = {
-                    dayTemp: elem.main.temp,
+                    dayTemp: parseInt(elem.main.temp),
                     dayDescription: elem.weather[0].description,
                     icon: elem.weather[0].icon,
                     date: date,
                 };
             } else {
-                fiveDaysForecast[date].dayTemp = elem.main.temp;
+                fiveDaysForecast[date].dayTemp = parseInt(elem.main.temp);
                 fiveDaysForecast[date].dayDescription =
                     elem.weather[0].description;
                 fiveDaysForecast[date].icon = elem.weather[0].icon;
@@ -57,9 +59,9 @@ async function getWeather(cityLatitude, cityLongitude) {
         `https://api.openweathermap.org/data/2.5/weather?lat=${cityLatitude}&lon=${cityLongitude}&appid=5b81f0d11c6be7a51dcf784becbd0145&units=metric`
     );
     const weatherData = await response.json();
-    const currentTemp = weatherData.main.temp;
-    const todaysMinimum = weatherData.main.temp_min;
-    const currentFeelsLike = weatherData.main.feels_like;
+    const currentTemp = parseInt(weatherData.main.temp);
+    const todaysMinimum = parseInt(weatherData.main.temp_min);
+    const currentFeelsLike = parseInt(weatherData.main.feels_like);
     const currentWind = weatherData.wind.speed;
     const clouds = weatherData.clouds.all;
     const city = weatherData.name;
@@ -99,20 +101,22 @@ async function fiveDay(cityLatitude, cityLongitude) {
         const date = elem.dt_txt.split(" ")[0];
         if (elem.dt_txt.endsWith("00:00:00")) {
             if (!fiveDaysForecast[date]) {
-                fiveDaysForecast[date] = { nightTemp: elem.main.temp };
+                fiveDaysForecast[date] = {
+                    nightTemp: parseInt(elem.main.temp),
+                };
             } else {
-                fiveDaysForecast[date].nightTemp = elem.main.temp;
+                fiveDaysForecast[date].nightTemp = parseInt(elem.main.temp);
             }
         } else if (elem.dt_txt.endsWith("15:00:00")) {
             if (!fiveDaysForecast[date]) {
                 fiveDaysForecast[date] = {
-                    dayTemp: elem.main.temp,
+                    dayTemp: parseInt(elem.main.temp),
                     dayDescription: elem.weather[0].description,
                     icon: elem.weather[0].icon,
                     date: date,
                 };
             } else {
-                fiveDaysForecast[date].dayTemp = elem.main.temp;
+                fiveDaysForecast[date].dayTemp = parseInt(elem.main.temp);
                 fiveDaysForecast[date].dayDescription =
                     elem.weather[0].description;
                 fiveDaysForecast[date].icon = elem.weather[0].icon;
