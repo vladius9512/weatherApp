@@ -14,19 +14,20 @@
                     <div class="date-search-location-container">
                         <div class="date-img-container">
                             <div class="date" id="date"></div>
+                            <input
+                                type="text"
+                                id="search"
+                                class="search"
+                                placeholder="Search..."
+                            />
                         </div>
-                        <input
-                            type="text"
-                            id="search"
-                            class="search"
-                            placeholder="Search..."
-                        />
-                        <label for="theme">Theme:</label>
-                        <select name="theme" id="theme">
-                            <option value="dark">Dark</option>
-                            <option value="light">Light</option>
-                        </select>
-                        <div class="location" id="location"></div>
+                        <div class="label-container">
+                            <label for="theme">Theme:</label>
+                            <select name="theme" id="theme">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="favorites-container" id="favorites">
                         <div class="button-container">
@@ -36,12 +37,12 @@
                 </div>
                 <div class="rightSide-container">
                     <div class="currentDay-container">
-                        <div class="message">
+                        <div class="location" id="location"></div>
+                        <!--<div class="message">
                             <p>The weather right now</p>
-                        </div>
+                        </div>-->
                         <div class="temp" id="temp"></div>
                         <div class="real-feel" id="real-feel"></div>
-                        <div class="min-temp" id="min-temp"></div>
                         <div class="sky" id="sky"></div>
                         <div class="wind-container">
                             <img src="./images/wind1.svg" alt="wind" />
